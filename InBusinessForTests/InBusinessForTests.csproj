@@ -2,6 +2,9 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <UserSecretsId>1431b54c-34b9-4b1e-a940-2520b4f2cf77</UserSecretsId>
+        <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
     </PropertyGroup>
 
     <ItemGroup>
@@ -18,6 +21,7 @@
       <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.22" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.22" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="3.1.22" />
+      <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     </ItemGroup>
 

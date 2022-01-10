@@ -71,7 +71,7 @@ namespace InBusinessForTests
                 }
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

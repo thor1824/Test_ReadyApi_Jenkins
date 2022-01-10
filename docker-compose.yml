@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  inbusinessfortests:
+    image: ${DOCKER_REGISTRY-}inbusinessfortests
+    build:
+      context: .
+      dockerfile: InBusinessForTests/Dockerfile
