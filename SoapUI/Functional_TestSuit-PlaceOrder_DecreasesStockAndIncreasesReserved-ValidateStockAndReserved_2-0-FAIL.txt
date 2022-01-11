@@ -1,0 +1,10 @@
+Status: FAIL
+Time Taken: 479
+Size: 0
+Timestamp: Tue Jan 11 15:22:38 CET 2022
+TestStep: ValidateStockAndReserved 2
+Error:java.lang.NumberFormatException: For input string: ""
+
+----------------- Messages ------------------------------
+java.lang.NumberFormatException: For input string: ""
+error at line: 6

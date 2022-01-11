@@ -1,0 +1,50 @@
+Status: FAIL
+Time Taken: 14
+Size: 363
+Timestamp: Tue Jan 11 15:22:38 CET 2022
+TestStep: OrderProductAgain
+
+----------------- Messages ------------------------------
+[Valid HTTP Status Codes] Response status code: 200 is not in acceptable list of status codes
+
+----------------- Properties ------------------------------
+HTTP Version: HTTP/1.1
+Endpoint: http://localhost:5001
+Method: POST
+StatusCode: 200
+URL: http://localhost:5001/Order
+
+---------------- Request ---------------------------
+Connection: [Keep-Alive]
+User-Agent: [Apache-HttpClient/4.5.2 (Java/16.0.1)]
+Host: [localhost:5001]
+Accept-Encoding: [gzip,deflate]
+Content-Length: [131]
+Content-Type: [application/json]
+
+POST http://localhost:5001/Order HTTP/1.1
+Accept-Encoding: gzip,deflate
+Content-Type: application/json
+Content-Length: 131
+Host: localhost:5001
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.2 (Java/16.0.1)
+
+{
+    "customerId": 11,
+    "orderLines" : [
+        {
+            "productId": 13,
+            "toBeReserved": 5
+        }
+    ]
+}
+
+---------------- Response --------------------------
+Server: [Kestrel]
+#status#: [HTTP/1.1 200 OK]
+Content-Length: [363]
+Date: [Tue, 11 Jan 2022 14:22:38 GMT]
+Content-Type: [application/json; charset=utf-8]
+
+{"currency":"DKK","deliveryCost":60.0,"productPriceAfterDiscount":50.0,"productPriceTotal":50.0,"productsOrdered":[{"amount":5,"productId":13,"productName":"StockTestProduct","orderId":12,"discountAmount":0,"hadDiscount":false,"wasQualifiedForDiscount":false,"discount":0.0,"price":10.0}],"invoiceTotalPrice":110.0,"timeOfPurchase":"2022-01-11T14:22:38.7968087Z"}

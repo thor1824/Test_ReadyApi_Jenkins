@@ -1,0 +1,39 @@
+Status: FAIL
+Time Taken: 3
+Size: 0
+Timestamp: Tue Jan 11 15:22:39 CET 2022
+TestStep: PayPriorOrder
+
+----------------- Messages ------------------------------
+[Valid HTTP Status Codes] Response status code: 405 is not in acceptable list of status codes
+
+----------------- Properties ------------------------------
+HTTP Version: HTTP/1.1
+Endpoint: http://localhost:5001
+Method: PUT
+StatusCode: 405
+URL: http://localhost:5001/Order/
+
+---------------- Request ---------------------------
+Connection: [Keep-Alive]
+User-Agent: [Apache-HttpClient/4.5.2 (Java/16.0.1)]
+Host: [localhost:5001]
+Accept-Encoding: [gzip,deflate]
+Content-Length: [0]
+Content-Type: [application/json]
+
+PUT http://localhost:5001/Order/ HTTP/1.1
+Accept-Encoding: gzip,deflate
+Content-Type: application/json
+Content-Length: 0
+Host: localhost:5001
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.2 (Java/16.0.1)
+
+
+---------------- Response --------------------------
+Server: [Kestrel]
+#status#: [HTTP/1.1 405 Method Not Allowed]
+Content-Length: [0]
+Date: [Tue, 11 Jan 2022 14:22:38 GMT]
+Allow: [DELETE, GET, PATCH, POST]
