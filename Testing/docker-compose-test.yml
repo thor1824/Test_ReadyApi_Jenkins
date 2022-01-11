@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  inbusinessfortests:
+    image: ${DOCKER_REGISTRY-}inbusinessfortests
+    container_name: testing-server
+    build:
+      context: .
+      dockerfile: ../InBusinessForTests/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "5001:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro

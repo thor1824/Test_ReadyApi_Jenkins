@@ -25,7 +25,7 @@ namespace InBusinessForTests.Controllers
             var result = await _orderManager.PlaceOrder(dto);
             if (!result.Succeeded)
             {
-                return BadRequest(new{Errors = result.Errors.ToArray()});
+                return BadRequest(new { Errors = result.Errors.ToArray() });
             }
 
             return Ok(result.Entity);
@@ -53,12 +53,12 @@ namespace InBusinessForTests.Controllers
             return Ok();
         }
 
-        [HttpPatch]
-        public IActionResult PayOrder([FromRoute] int id)
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> PayOrder([FromRoute] int id)
         {
-            // from customer
-            // is paid for
-            return Ok();
+            var order = await _orderManager.GetAsync(id);
+            await _orderManager.PayOrderAsync(order);
+            return NoContent();
         }
     }
 }

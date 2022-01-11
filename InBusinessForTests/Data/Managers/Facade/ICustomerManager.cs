@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using InBusinessForTests.Data.Model;
 
 namespace InBusinessForTests.Data.Managers.Facade
 {

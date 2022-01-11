@@ -2,6 +2,7 @@ using System;
 using InBusinessForTests.Data;
 using InBusinessForTests.Data.Managers;
 using InBusinessForTests.Data.Managers.Facade;
+using InBusinessForTests.Data.Model;
 using InBusinessForTests.Data.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

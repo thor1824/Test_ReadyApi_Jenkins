@@ -21,8 +21,10 @@ namespace InBusinessForTests.Controllers
             var result = await _customerManager.CreateAsync(dto.Name);
             if (!result.Succeeded)
             {
-                return BadRequest(result.Errors.ToArray());
-                
+                return BadRequest(new
+                {
+                    errors = result.Errors.ToArray()
+                });
             }
             var newlyCreated = result.Entity;
             return Created("" + newlyCreated.Id, newlyCreated);

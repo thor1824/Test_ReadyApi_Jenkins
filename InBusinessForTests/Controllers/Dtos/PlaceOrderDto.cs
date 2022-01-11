@@ -12,4 +12,5 @@ namespace InBusinessForTests.Controllers.Dtos
         public int ProductId { get; set; }
         public int ToBeReserved { get; set; }
     }
+    
 }

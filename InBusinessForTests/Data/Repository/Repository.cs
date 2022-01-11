@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using InBusinessForTests.Data.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace InBusinessForTests.Data.Repository

@@ -39,7 +39,7 @@ namespace InBusinessForTests.Controllers
         [HttpGet("{id:int}")]
         public async Task<IActionResult> Get([FromRoute] int id)
         {
-            var products = await _productManager.GetAll();
+            var products = await _productManager.GetAsync(id);
             return Ok(products);
         }
         

@@ -8,11 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Data\Migrations" />
-      <Folder Include="Data\Model" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.22" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.22">
         <PrivateAssets>all</PrivateAssets>

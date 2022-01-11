@@ -5,23 +5,11 @@ using System.Threading.Tasks;
 using InBusinessForTests.Controllers;
 using InBusinessForTests.Controllers.Dtos;
 using InBusinessForTests.Data.Managers.Facade;
+using InBusinessForTests.Data.Model;
 using InBusinessForTests.Data.Repository;
 
 namespace InBusinessForTests.Data.Managers
 {
-    public class OrderInvoice
-    {
-        public string Currency { get; set; } = "N/A";
-        public double DeliveryCost { get; set; } = 0.0;
-        public double ProductPriceAfterDiscount { get; set; } = 0.0;
-        public double ProductPriceTotal { get; set; } = 0.0;
-        public IList<InvoiceOrderLine> ProductsOrdered { get; set; } = new List<InvoiceOrderLine>();
-
-        public double InvoiceTotalPrice => ProductPriceAfterDiscount + DeliveryCost;
-
-        public DateTime TimeOfPurchase { get; set; }
-    }
-
     public class OrderManager : IOrderManager
     {
         private readonly Repository<Order> _orderRepository;
@@ -61,6 +49,7 @@ namespace InBusinessForTests.Data.Managers
                 TimeOfPurchase = DateTime.UtcNow
             };
             var order = await _orderRepository.AddAsync(newOrder);
+            await IncreaseDept(order);
             var invoice = ToOrderInvoice(order);
             return BusinessResponse<OrderInvoice>.SuccessWithEntity(invoice);
         }
@@ -82,12 +71,34 @@ namespace InBusinessForTests.Data.Managers
             return orders.Select(ToOrderInvoice).ToList();
         }
 
+        public async Task<Order> GetAsync(int id)
+        {
+            return await _orderRepository.GetAsync(id);
+        }
+
+        public async Task PayOrderAsync(Order order)
+        {
+            var invoice = ToOrderInvoice(order);
+            var customer = await _customerRepository.GetAsync(order.CustomerId);
+            customer.Credit += invoice.InvoiceTotalPrice;
+            await _customerRepository.UpdateAsync(customer);
+        }
+        
+        private async Task IncreaseDept(Order order)
+        {
+            var invoice = ToOrderInvoice(order);
+            var customer = await _customerRepository.GetAsync(order.CustomerId);
+            customer.Credit -= invoice.InvoiceTotalPrice;
+            await _customerRepository.UpdateAsync(customer);
+        }
+
         private OrderInvoice ToOrderInvoice(Order order)
         {
             var (price, priceWithDiscount) = CalculatePriceAsync(order.OrderLines);
 
             var invoice = new OrderInvoice
             {
+                OrderId = order.Id,
                 ProductPriceTotal = price,
                 ProductPriceAfterDiscount = priceWithDiscount,
                 DeliveryCost = EligibleForNoDeliveryCost(priceWithDiscount) ? 0 : 60,
@@ -228,17 +239,5 @@ namespace InBusinessForTests.Data.Managers
         }
     }
 
-    public class InvoiceOrderLine
-    {
-        public int Amount { get; set; }
-        public int ProductId { get; set; }
-        public string ProductName { get; set; }
-        public int OrderId { get; set; }
-        public int DiscountAmount { get; set; }
-        public bool HadDiscount => Discount != 0.0;
-        public bool WasQualifiedForDiscount => Discount != 0.0;
-
-        public double Discount { get; set; }
-        public double Price { get; set; }
-    }
+    
 }

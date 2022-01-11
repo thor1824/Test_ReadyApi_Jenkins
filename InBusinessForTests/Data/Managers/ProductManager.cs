@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using InBusinessForTests.Controllers;
 using InBusinessForTests.Data.Managers.Facade;
+using InBusinessForTests.Data.Model;
 using InBusinessForTests.Data.Repository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,6 +43,11 @@ namespace InBusinessForTests.Data.Managers
                 AmountBoughtForDiscount = dto.AmountBoughtForDiscount,
             };
             return await _repository.AddAsync(newProduct);
+        }
+
+        public async Task<Product> GetAsync(int id)
+        {
+            return await _repository.GetAsync(id);
         }
     }
 }

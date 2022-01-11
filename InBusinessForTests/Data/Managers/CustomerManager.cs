@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using InBusinessForTests.Data.Managers.Facade;
+using InBusinessForTests.Data.Model;
 using InBusinessForTests.Data.Repository;
 
 namespace InBusinessForTests.Data.Managers

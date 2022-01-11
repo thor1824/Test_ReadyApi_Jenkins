@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace InBusinessForTests.Data.Managers
+namespace InBusinessForTests.Data.Model
 {
     public class BusinessResponse<T>
     {
